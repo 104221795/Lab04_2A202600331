@@ -1,0 +1,17 @@
+1. Phân tầng ưu tiên (Quy trình làm việc)
+Trong phần <rules>, em thêm quy tắc: "Kiểm tra giá vé máy bay TRƯỚC khi tìm khách sạn".
+
+Lý do: Đây là lỗi phổ biến nhất của Agent. Nếu nó tìm khách sạn 5 sao trước, sau đó mới thấy vé máy bay đắt quá, nó sẽ bị "kẹt". 
+
+2. Kết nối logic giữa các công cụ (Tool Chain)
+Trong phần <tools_instruction>, em không chỉ liệt kê tên tool mà còn hướng dẫn cách dùng:
+
+Ví dụ: Google Hotels phải dựa trên "số tiền còn lại".
+
+Điều này giúp Agent hiểu rằng kết quả của Tool 1 (Vé máy bay) chính là dữ liệu đầu vào để tính toán cho Tool 2 (Khách sạn). Nếu không có dòng này, Agent 
+có thể gọi các tool một cách ngẫu hứng mà không liên quan đến nhau.
+
+3. Cơ chế "Tự vệ" & Cảnh báo (Guardrails)
+Trong phần <constraints> và <rules>, em bổ sung việc xử lý khi "Ngân sách quá thấp":
+
+Lý do: Để Agent không "nói dối" hoặc cố tình gợi ý đại một khách sạn vượt ngân sách. Nó giúp Agent biết khi nào nên dừng việc đặt chỗ lại và chuyển sang vai trò tư vấn 
